@@ -1,0 +1,26 @@
+{
+  "name": "El Universo Libre",
+  "description": "Extensión para el navegador que permite la libre lectura de artículos en el diario El Universo",
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.jpeg",
+    "32": "icons/icon32.jpeg",
+    "48": "icons/icon48.jpeg",
+    "128": "icons/icon128.jpeg"
+  },
+  "permissions": ["storage", "activeTab", "scripting", "management", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.eluniverso.com/*"],
+      "js": ["detect.js"]
+    }
+  ]
+}
