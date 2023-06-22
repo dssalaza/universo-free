@@ -63,66 +63,6 @@ activateBtn.addEventListener("click", async () => {
   });
 });
 
-document.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-  let target = { tabId: tab.id };
-
-  chrome.storage.local.get("isExtensionEnabled", async function (data) {
-    if (!data.isExtensionEnabled) {
-      chrome.storage.local.set({ isExtensionEnabled: true });
-      updateButonView();
-
-      chrome.scripting.executeScript(
-        {
-          files: ["./utils/enableLectureUtils.js"],
-          target: target,
-        },
-        () => {
-          chrome.scripting.executeScript({
-            target: target,
-            function: () => {
-              removePayWall();
-            },
-          });
-        }
-      );
-
-      chrome.scripting.executeScript(
-        {
-          files: ["./utils/enableLectureUtils.js"],
-          target: target,
-        },
-        () => {
-          chrome.scripting.executeScript({
-            target: target,
-            function: () => {
-              removeBlurredPharagraphs(true);
-            },
-          });
-        }
-      );
-    } else {
-      chrome.storage.local.set({ isExtensionEnabled: false });
-      updateButonView();
-
-      chrome.scripting.executeScript(
-        {
-          files: ["./utils/enableLectureUtils.js"],
-          target: target,
-        },
-        () => {
-          chrome.scripting.executeScript({
-            target: target,
-            function: () => {
-              removeBlurredPharagraphs(false);
-            },
-          });
-        }
-      );
-    }
-  });
-});
-
 // Add a message listener to receive messages from the background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "pageLoad") {
