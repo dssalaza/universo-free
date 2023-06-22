@@ -136,11 +136,11 @@ function updateButonView() {
     if (data.isExtensionEnabled) {
       header.innerHTML = "Desea desactivar el modo lectura?";
       activateBtn.innerHTML = "Desactivar";
-      activateBtn.classList.toggle("inactive", data.isEnabled);
+      activateBtn.classList.toggle("inactive", data.isExtensionEnabled);
     } else {
       header.innerHTML = "Desea activar el modo lectura?";
       activateBtn.innerHTML = "Activar";
-      activateBtn.classList.toggle("inactive", data.isEnabled);
+      activateBtn.classList.toggle("inactive", data.isExtensionEnabled);
     }
   });
 }
