@@ -8,20 +8,14 @@ function removePayWall() {
     element.remove();
   });
 
-  //Remove blur of the pharagraphs
+  //Remove blurred pharagraphs
   document.querySelectorAll("p").forEach((element) => {
     element.removeAttribute("style");
   });
-
-  window.alert("Paywall removed!");
 }
 
 function removeBlurredPharagraphs(isEnabled) {
-    window.alert("removeBlurredPharagraphs...");
-
   if (isEnabled) {
-    console.log("observing...");
-
     const blurredPharagraphs = document.querySelectorAll(".prose-text");
 
     observer = new MutationObserver(() => {
@@ -36,8 +30,6 @@ function removeBlurredPharagraphs(isEnabled) {
       });
     });
   } else {
-    console.log("Disconnecting observer...");
     observer.disconnect();
   }
 }
-
