@@ -7,9 +7,9 @@ activateBtn.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let target = { tabId: tab.id };
 
-  chrome.storage.local.get("isEnabled", async function (data) {
-    if (!data.isEnabled) {
-      chrome.storage.local.set({ isEnabled: true });
+  chrome.storage.local.get("isExtensionEnabled", async function (data) {
+    if (!data.isExtensionEnabled) {
+      chrome.storage.local.set({ isExtensionEnabled: true });
       updateButonView();
 
       chrome.scripting.executeScript(
@@ -42,7 +42,7 @@ activateBtn.addEventListener("click", async () => {
         }
       );
     } else {
-      chrome.storage.local.set({ isEnabled: false });
+      chrome.storage.local.set({ isExtensionEnabled: false });
       updateButonView();
 
       chrome.scripting.executeScript(
@@ -67,9 +67,9 @@ document.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
   let target = { tabId: tab.id };
 
-  chrome.storage.local.get("isEnabled", async function (data) {
-    if (!data.isEnabled) {
-      chrome.storage.local.set({ isEnabled: true });
+  chrome.storage.local.get("isExtensionEnabled", async function (data) {
+    if (!data.isExtensionEnabled) {
+      chrome.storage.local.set({ isExtensionEnabled: true });
       updateButonView();
 
       chrome.scripting.executeScript(
@@ -102,7 +102,7 @@ document.addEventListener("click", async () => {
         }
       );
     } else {
-      chrome.storage.local.set({ isEnabled: false });
+      chrome.storage.local.set({ isExtensionEnabled: false });
       updateButonView();
 
       chrome.scripting.executeScript(
@@ -132,8 +132,8 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 function updateButonView() {
-  chrome.storage.local.get("isEnabled", async function (data) {
-    if (data.isEnabled) {
+  chrome.storage.local.get("isExtensionEnabled", async function (data) {
+    if (data.isExtensionEnabled) {
       header.innerHTML = "Desea desactivar el modo lectura?";
       activateBtn.innerHTML = "Desactivar";
       activateBtn.classList.toggle("inactive", data.isEnabled);

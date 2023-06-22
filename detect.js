@@ -1,6 +1,5 @@
-
-chrome.storage.local.get("isEnabled", async function (data) {
-  if (data.isEnabled) {
-    chrome.runtime.sendMessage({enableLectureMode: true});
-  } 
+chrome.storage.local.get("isExtensionEnabled", async function (data) {
+  if (data.isExtensionEnabled) {
+    chrome.runtime.sendMessage({ enableLectureMode: true });
+  }
 });

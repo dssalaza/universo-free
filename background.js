@@ -1,6 +1,6 @@
 const newEnabledState = false;
 
-chrome.storage.local.set({ isEnabled: newEnabledState }, function () {
+chrome.storage.local.set({ isExtensionEnabled: newEnabledState }, function () {
   console.log("Value is being set to... " + newEnabledState);
 });
 
